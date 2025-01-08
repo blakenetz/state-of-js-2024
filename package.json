@@ -1,0 +1,12 @@
+{
+  "name": "state-of-js-2024",
+  "version": "1.0.0",
+  "description": "Exploration of libs, etc from State of JS 2024 survey",
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "start": "pnpm run --parallel start",
+    "build": "pnpm run --parallel build"  
+  },
+  "keywords": ["State of JS 2024"],
+  "author": "blake netzeband <blake.netzeband@gmail.com> (https://blakenetzeband.com/)"
+}
