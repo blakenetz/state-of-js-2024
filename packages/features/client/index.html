@@ -6,23 +6,41 @@
       <span id="loading">FALSE</span>
     </div>
 
+    <br />
+
     <div>
-      <strong>RESULTS:</strong>
-      <span id="results"></span>
+      <strong>STATIC:</strong>
+      <p>Using <code>import { value } from "/module"</code> syntax</p>
+      <div>Results: <span id="static"></span></div>
+    </div>
+
+    <br />
+
+    <div>
+      <strong>DYNAMIC:</strong>
+      <p>Using <code>import("/module")</code> syntax</p>
+      <div>Results: <span id="dynamic"></span></div>
     </div>
 
     <script type="module">
       const loading = document.querySelector("#loading");
-      const results = document.querySelector("#results");
+      const staticEl = document.querySelector("#static");
+      const dynamicEl = document.querySelector("#dynamic");
+
       loading.innerHTML = "TRUE";
 
-      import { value } from "/module";
-      results.innerHTML = value;
+      import { value as staticValue } from "/module";
+      const { value: dynamicValue } = await import("/module");
+
+      staticEl.innerHTML = staticValue;
+      dynamicEl.innerHTML = dynamicValue;
 
       setTimeout(() => {
-        results.innerHTML = value;
+        staticEl.innerHTML = staticValue;
+        dynamicEl.innerHTML = dynamicValue;
+
         loading.innerHTML = "FALSE";
-      }, 1000);
+      }, 1500);
     </script>
   </body>
 </html>
