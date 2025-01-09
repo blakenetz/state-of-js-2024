@@ -1,10 +1,31 @@
 import chalk from "chalk";
 
-function log(...args: any[]) {
-  const [description, ...rest] = args;
-  console.log(chalk.green(description), ...rest);
+const logger = {
+  log(description: string, ...args: any[]) {
+    console.log(chalk.green(description), ...args);
+  },
+  error(description: string, ...args: any[]) {
+    console.error(chalk.red(description), ...args);
+  },
+};
+// import http from "node:http";
+
+// const port = 3000;
+// const host = "localhost";
+
+// const server = http.createServer((req, res) => {
+//   // Log each request
+//   console.log(`${req.method} ${req.url}`);
+// });
+
+// server.listen(port, host, () => {
+//   console.log(`Server running at http://${host}:${port}/`);
+// });
+
+async function main() {
+  const { value } = await import("./data/liveBindings");
+  logger.log("Initial value", value);
+  setTimeout(() => logger.log("After 1000ms", value), 1000);
 }
 
-async function main() {}
-
-main();
+main().catch((e) => console.error("Error in main.ts", e));
