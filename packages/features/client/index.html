@@ -1,50 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link
+      href="https://unpkg.com/bonsai.css@latest/dist/bonsai.min.css"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
   <body>
-    <div>
-      <strong>LOADING:</strong>
-      <span id="loading">FALSE</span>
-    </div>
+    <main style="--p: 1rem">
+      <h1>Import Features</h1>
 
-    <br />
+      <hr />
 
-    <div>
-      <strong>STATIC:</strong>
-      <p>Using <code>import { value } from "/module"</code> syntax</p>
-      <div>Results: <span id="static"></span></div>
-    </div>
+      <h2>Live Binding with Static vs Dynamic imports</h2>
 
-    <br />
+      <div>
+        <h5>STATIC</h5>
+        <p>Using <code>import { value } from "/module"</code> syntax</p>
+        <div>Results: <span id="static"></span></div>
+      </div>
 
-    <div>
-      <strong>DYNAMIC:</strong>
-      <p>Using <code>import("/module")</code> syntax</p>
-      <div>Results: <span id="dynamic"></span></div>
-    </div>
+      <br />
 
-    <hr />
+      <div>
+        <h5>DYNAMIC</h5>
+        <p>Using <code>import("/module")</code> syntax</p>
+        <div>Results: <span id="dynamic"></span></div>
+      </div>
 
-    <div>
-      <strong>IMPORT ATTRIBUTES:</strong>
+      <hr />
+
+      <h2>Import Attributes</h2>
+
       <button id="importBtn">import</button>
-      <p>import <i>.json</i> file with MIME type <i>application/json</i></p>
-      <div>Results: <span id="import"></span></div>
-      <p>
-        import <i>.json</i> file with MIME type <i>application/json</i> and
-        <i>import attribute specifier</i>
-      </p>
+
+      <div>
+        <h5>DEFAULT IMPORT</h5>
+        <p>Using unspecified type while importing <i>.json</i> file</p>
+        <div>Results: <span id="import"></span></div>
+      </div>
+
+      <div>
+        <h5>SPECIFIC IMPORT</h5>
+        <p>
+          Using <code>{with: {type: 'json'}}</code> specifier while importing
+          <i>.json</i> file
+        </p>
+      </div>
       <div>Results: <span id="import-attribute"></span></div>
-    </div>
+    </main>
 
     <script type="module">
-      const loading = document.querySelector("#loading");
       const staticEl = document.querySelector("#static");
       const dynamicEl = document.querySelector("#dynamic");
       const importBtn = document.querySelector("#importBtn");
       const importEl = document.querySelector("#import");
       const importAttrEl = document.querySelector("#import-attribute");
-
-      loading.innerHTML = "TRUE";
 
       import { value as staticValue } from "/module";
       const { value: dynamicValue } = await import("/module");
@@ -55,8 +68,6 @@
       setTimeout(() => {
         staticEl.innerHTML = staticValue;
         dynamicEl.innerHTML = dynamicValue;
-
-        loading.innerHTML = "FALSE";
       }, 1500);
 
       async function handleClick() {
