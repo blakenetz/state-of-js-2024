@@ -3,9 +3,12 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "tsx index.ts"
+    "start": "concurrently \"tsx server.ts\" \"tsx index.ts\""
   },
   "dependencies": {
     "chalk": "^5.4.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }

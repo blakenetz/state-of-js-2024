@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div>
+      <strong>LOADING:</strong>
+      <span id="loading">FALSE</span>
+    </div>
+
+    <div>
+      <strong>RESULTS:</strong>
+      <span id="results"></span>
+    </div>
+
+    <script type="module">
+      const loading = document.querySelector("#loading");
+      const results = document.querySelector("#results");
+      loading.innerHTML = "TRUE";
+
+      import { value } from "/module";
+      results.innerHTML = value;
+
+      setTimeout(() => {
+        results.innerHTML = value;
+        loading.innerHTML = "FALSE";
+      }, 1000);
+    </script>
+  </body>
+</html>

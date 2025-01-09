@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import { value } from "./data/liveBindings";
 
 const logger = {
   log(description: string, ...args: any[]) {
@@ -23,7 +24,6 @@ const logger = {
 // });
 
 async function main() {
-  const { value } = await import("./data/liveBindings");
   logger.log("Initial value", value);
   setTimeout(() => logger.log("After 1000ms", value), 1000);
 }
