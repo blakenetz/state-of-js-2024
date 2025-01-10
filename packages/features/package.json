@@ -3,7 +3,9 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"tsx server.ts\" \"tsx index.ts\""
+    "start": "concurrently \"tsx server.ts\" \"tsx index.ts\"",
+    "start:node": "tsx index.ts",
+    "start:http": "tsx server.ts"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

@@ -12,7 +12,8 @@
   ],
   "author": "blake netzeband <blake.netzeband@gmail.com> (https://blakenetzeband.com/)",
   "devDependencies": {
-    "@types/node": "^22.10.5"
+    "@types/node": "^22.10.5",
+    "chalk": "^5.4.1"
   },
   "dependencies": {
     "tsx": "^4.19.2"
