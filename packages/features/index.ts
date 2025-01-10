@@ -19,7 +19,7 @@ async function dynamicImports() {
   }, time);
 }
 
-async function allSettled() {
+async function settlingPromises() {
   const promises = [Promise.resolve("Good!"), Promise.reject("Bad!")];
   const all = await Promise.all(promises).catch(
     (e) => `REJECTED WITH ERROR: ${e}`
@@ -31,7 +31,7 @@ async function allSettled() {
 
 async function main() {
   await dynamicImports();
-  await allSettled();
+  await settlingPromises();
 }
 
 main().catch((e) => console.error("Error in main.ts", e));

@@ -1,5 +1,6 @@
 import http from "node:http";
 import fs from "node:fs";
+import { WebSocket } from "node:http";
 
 const port = 3000;
 const host = "localhost";
@@ -25,6 +26,9 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { "Content-Type": "application/json" });
       const json = fs.readFileSync("data/data.json", options);
       res.end(json);
+      break;
+
+    case "/ws":
       break;
 
     default:

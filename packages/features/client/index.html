@@ -50,14 +50,18 @@
         </p>
       </div>
       <div>Results: <span id="import-attribute"></span></div>
+
+      <hr />
+
+      <h2>Web Sockets</h2>
+
+      <button id="ws">WebSocket</button>
     </main>
 
+    <!-- Live Binding -->
     <script type="module">
       const staticEl = document.querySelector("#static");
       const dynamicEl = document.querySelector("#dynamic");
-      const importBtn = document.querySelector("#importBtn");
-      const importEl = document.querySelector("#import");
-      const importAttrEl = document.querySelector("#import-attribute");
 
       import { value as staticValue } from "/module";
       const { value: dynamicValue } = await import("/module");
@@ -69,28 +73,30 @@
         staticEl.innerHTML = staticValue;
         dynamicEl.innerHTML = dynamicValue;
       }, 1500);
+    </script>
+    <!-- Import Attributes -->
+    <script defer>
+      const importBtn = document.querySelector("#importBtn");
+      const importEl = document.querySelector("#import");
+      const importAttrEl = document.querySelector("#import-attribute");
 
-      async function handleClick() {
-        import("/data")
-          .then((mod) => {
-            importEl.innerHTML = JSON.stringify(mod.default);
-          })
-          .catch((e) => {
-            console.error("Unable to import /data", e);
-            importEl.innerHTML = `ERROR: ${e.message}`;
-          });
-
-        import("/data", { with: { type: "json" } })
-          .then((mod) => {
-            importAttrEl.innerHTML = JSON.stringify(mod.default);
-          })
-          .catch((e) => {
-            console.error("Unable to import /data", e);
-            importAttrEl.innerHTML = `ERROR: ${e.message}`;
-          });
+      function handleSuccess(mod, el) {
+        el.innerHTML = JSON.stringify(mod.default);
+      }
+      function handleError(e, el) {
+        console.error("Unable to import /data", e);
+        el.innerHTML = `ERROR: ${e.message}`;
       }
 
-      importBtn.addEventListener("click", handleClick);
+      importBtn.addEventListener("click", () => {
+        import("/data")
+          .then((mod) => handleSuccess(mode, importEl))
+          .catch((e) => handleError(e, importEl));
+
+        import("/data", { with: { type: "json" } })
+          .then((mod) => handleSuccess(mode, importAttrEl))
+          .catch((e) => handleError(e, importAttrEl));
+      });
     </script>
   </body>
 </html>
