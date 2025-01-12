@@ -54,8 +54,19 @@
       <hr />
 
       <h2>Web Sockets</h2>
+      <div>Status: <span id="wsStatus">CLOSED</span></div>
 
-      <button id="ws">WebSocket</button>
+      <form id="wsForm">
+        <label>
+          Web socket message
+          <input name="msg" type="text" />
+        </label>
+      </form>
+
+      <div>
+        Messages from server:
+        <ul id="wsResponse"></ul>
+      </div>
     </main>
 
     <!-- Live Binding -->
@@ -96,6 +107,37 @@
         import("/data", { with: { type: "json" } })
           .then((mod) => handleSuccess(mode, importAttrEl))
           .catch((e) => handleError(e, importAttrEl));
+      });
+    </script>
+    <script defer>
+      const wsStatus = document.querySelector("#wsStatus");
+      const wsForm = document.querySelector("#wsForm");
+      const wsResponse = document.querySelector("#wsResponse");
+
+      const ws = new WebSocket("http://localhost:3000");
+      ws.addEventListener("open", () => {
+        console.log("opening web sock");
+        wsStatus.innerHTML = "OPEN";
+      });
+
+      ws.addEventListener("close", () => {
+        console.log("closing web sock");
+        wsStatus.innerHTML = "CLOSED";
+      });
+
+      ws.addEventListener("message", (ev) => {
+        console.log("Message from server ", ev);
+        const li = document.createElement("li");
+        const timeStamp = new Date(ev.timeStamp).toLocaleString();
+        li.innerHTML = `[${timeStamp}] ${ev.data}`;
+        wsResponse.appendChild(li);
+      });
+
+      wsForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const msg = formData.get("msg");
+        ws.send(msg);
       });
     </script>
   </body>
