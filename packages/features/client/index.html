@@ -5,68 +5,63 @@
       href="https://unpkg.com/bonsai.css@latest/dist/bonsai.min.css"
       rel="stylesheet"
     />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
     <main style="--p: 1rem">
-      <h1>Import Features</h1>
+      <h1>JS Features</h1>
+      <hr />
+      <section>
+        <h2>Live Binding with Static vs Dynamic imports</h2>
+        <div>
+          <h5>STATIC</h5>
+          <p>Using <code>import { value } from "/module"</code> syntax</p>
+          <div>Results: <span id="static"></span></div>
+        </div>
+        <br />
+        <div>
+          <h5>DYNAMIC</h5>
+          <p>Using <code>import("/module")</code> syntax</p>
+          <div>Results: <span id="dynamic"></span></div>
+        </div>
+      </section>
 
       <hr />
 
-      <h2>Live Binding with Static vs Dynamic imports</h2>
-
-      <div>
-        <h5>STATIC</h5>
-        <p>Using <code>import { value } from "/module"</code> syntax</p>
-        <div>Results: <span id="static"></span></div>
-      </div>
-
-      <br />
-
-      <div>
-        <h5>DYNAMIC</h5>
-        <p>Using <code>import("/module")</code> syntax</p>
-        <div>Results: <span id="dynamic"></span></div>
-      </div>
-
-      <hr />
-
-      <h2>Import Attributes</h2>
-
-      <button id="importBtn">import</button>
-
-      <div>
-        <h5>DEFAULT IMPORT</h5>
-        <p>Using unspecified type while importing <i>.json</i> file</p>
-        <div>Results: <span id="import"></span></div>
-      </div>
-
-      <div>
-        <h5>SPECIFIC IMPORT</h5>
-        <p>
-          Using <code>{with: {type: 'json'}}</code> specifier while importing
-          <i>.json</i> file
-        </p>
-      </div>
-      <div>Results: <span id="import-attribute"></span></div>
+      <section>
+        <h2>Import Attributes</h2>
+        <button id="importBtn">import</button>
+        <div>
+          <h5>DEFAULT IMPORT</h5>
+          <p>Using unspecified type while importing <i>.json</i> file</p>
+          <div>Results: <span id="import"></span></div>
+        </div>
+        <div>
+          <h5>SPECIFIC IMPORT</h5>
+          <p>
+            Using <code>{with: {type: 'json'}}</code> specifier while importing
+            <i>.json</i> file
+          </p>
+        </div>
+        <div>Results: <span id="import-attribute"></span></div>
+      </section>
 
       <hr />
 
-      <h2>Web Sockets</h2>
-      <div>Status: <span id="wsStatus">CLOSED</span></div>
-
-      <form id="wsForm">
-        <label>
-          Web socket message
-          <input name="msg" type="text" />
-        </label>
-      </form>
-
-      <div>
-        Messages from server:
-        <ul id="wsResponse"></ul>
-      </div>
+      <section>
+        <h2>Web Sockets</h2>
+        <div>Status: <span id="wsStatus">CLOSED</span></div>
+        <form id="wsForm">
+          <label>
+            Web socket message
+            <input name="msg" type="text" />
+          </label>
+        </form>
+        <div>
+          Messages from server:
+          <ul id="wsResponse"></ul>
+        </div>
+      </section>
     </main>
 
     <!-- Live Binding -->
@@ -101,20 +96,21 @@
 
       importBtn.addEventListener("click", () => {
         import("/data")
-          .then((mod) => handleSuccess(mode, importEl))
+          .then((mod) => handleSuccess(mod, importEl))
           .catch((e) => handleError(e, importEl));
 
         import("/data", { with: { type: "json" } })
-          .then((mod) => handleSuccess(mode, importAttrEl))
+          .then((mod) => handleSuccess(mod, importAttrEl))
           .catch((e) => handleError(e, importAttrEl));
       });
     </script>
+    <!-- WebSockets -->
     <script defer>
       const wsStatus = document.querySelector("#wsStatus");
       const wsForm = document.querySelector("#wsForm");
       const wsResponse = document.querySelector("#wsResponse");
 
-      const ws = new WebSocket("http://localhost:3000");
+      const ws = new WebSocket(`http://${document.location.host}`);
       ws.addEventListener("open", () => {
         console.log("opening web sock");
         wsStatus.innerHTML = "OPEN";
@@ -127,6 +123,7 @@
 
       ws.addEventListener("message", (ev) => {
         console.log("Message from server ", ev);
+        if (!ev.data) return;
         const li = document.createElement("li");
         const timeStamp = new Date(ev.timeStamp).toLocaleString();
         li.innerHTML = `[${timeStamp}] ${ev.data}`;
@@ -136,7 +133,7 @@
       wsForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const msg = formData.get("msg");
+        const msg = formData.get("msg") ?? "";
         ws.send(msg);
       });
     </script>
