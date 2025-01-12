@@ -1,7 +1,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import handleWebSocket from "./webSocket";
-import { host, port } from "../util";
+import { host, port } from "./util";
 
 const server = http.createServer((req, res) => {
   console.log(`${req.method} ${req.url}`);

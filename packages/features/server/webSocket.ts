@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import http from "node:http";
 import internal from "node:stream";
-import { host, port } from "../util";
+import { host, port } from "./util";
 
 export default function handleWebSocket(
   req: http.IncomingMessage,
