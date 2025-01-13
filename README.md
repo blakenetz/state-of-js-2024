@@ -7,6 +7,5 @@ Featuring:
 Highlights from the [features section](https://2024.stateofjs.com/en-US/features)
 
 - [pnpm Monorepo](https://pnpm.io/)
-- [Dynamic Imports](./packages/features/index.ts#dynamicImports)
-- [Promise.allSettled](./packages/features/index.ts#settlingPromises)
-- [Websockets](./packages/features/client/index.html#websocket)
+- [JavaScript Features](./packages/features/README.md)
+- [Astro](./packages/astro-app/README.md)

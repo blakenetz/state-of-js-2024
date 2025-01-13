@@ -6,3 +6,4 @@ This package covers the following from the [features sections](https://2024.stat
 - [Static Imports with Live Bindings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 - [Promise.allSettled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled)
 - [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
