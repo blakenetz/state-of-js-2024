@@ -6,6 +6,8 @@
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>State of JS 2024 Playground</title>
+    <link rel="manifest" href="manifest.json" />
   </head>
   <body>
     <main style="--p: 1rem">
@@ -61,6 +63,13 @@
           Messages from server:
           <ul id="wsResponse"></ul>
         </div>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>PWA</h2>
+        <button id="pwaBtn" hidden>Install</button>
       </section>
     </main>
 
@@ -136,6 +145,35 @@
         const msg = formData.get("msg") ?? "";
         ws.send(msg);
       });
+    </script>
+    <!-- PWA -->
+    <script id="pwa">
+      let installPrompt = null;
+      const pwaBtn = document.querySelector("#pwaBtn");
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        console.log("before prompt");
+        e.preventDefault();
+        installPrompt = event;
+        pwaBtn.removeAttribute("hidden");
+      });
+
+      window.addEventListener("appinstalled", () => {
+        console.log("app installed");
+        disableInAppInstallPrompt();
+      });
+
+      pwaBtn.addEventListener("click", async () => {
+        if (!installPrompt) return;
+        const results = await installPrompt.prompt();
+        console.log(`Install prompt was: ${result.outcome}`);
+        disableInAppInstallPrompt();
+      });
+
+      function disableInAppInstallPrompt() {
+        installPrompt = null;
+        installButton.setAttribute("hidden", "");
+      }
     </script>
   </body>
 </html>

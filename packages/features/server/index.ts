@@ -19,16 +19,32 @@ const server = http.createServer((req, res) => {
     case "/module":
       try {
         res.writeHead(200, { "Content-Type": "text/javascript" });
-        const js = fs.readFileSync("data/liveBindings.ts", readOptions);
-        res.end(js);
+        const data = fs.readFileSync("data/liveBindings.ts", readOptions);
+        res.end(data);
       } catch (error) {}
       break;
 
     case "/data":
       try {
         res.writeHead(200, { "Content-Type": "application/json" });
-        const json = fs.readFileSync("data/data.json", readOptions);
-        res.end(json);
+        const data = fs.readFileSync("data/data.json", readOptions);
+        res.end(data);
+      } catch (error) {}
+      break;
+
+    case "/manifest.json":
+      try {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        const data = fs.readFileSync("client/manifest.json", readOptions);
+        res.end(data);
+      } catch (error) {}
+      break;
+
+    case "/icon.png":
+      try {
+        res.writeHead(200, { "Content-Type": "image/png" });
+        const data = fs.readFileSync("client/icon.png");
+        res.end(data);
       } catch (error) {}
       break;
 
