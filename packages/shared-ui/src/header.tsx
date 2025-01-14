@@ -1,3 +1,5 @@
+import React from "react";
+
 interface HeaderProps {
   image: React.ReactNode;
   title: string;

@@ -1,3 +1,5 @@
+import React from "react";
+
 interface CardProps {
   image: React.ReactNode;
   name: string;

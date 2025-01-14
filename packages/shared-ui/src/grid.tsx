@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Grid({ children }: React.PropsWithChildren) {
   return (
     <section className="mx-auto max-w-2xl p-4 lg:max-w-7xl lg:p-8">
