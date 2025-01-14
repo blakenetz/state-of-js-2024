@@ -4,10 +4,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
+    "lint": "astro check",
     "start": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/netlify": "^6.1.0",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^5.1.6",
     "tailwindcss": "^3.4.17"

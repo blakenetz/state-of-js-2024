@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Props {
   pokemonUrl: string;
 }
@@ -19,7 +21,7 @@ export default async function Card({ pokemonUrl }: Props) {
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="bg-white flex justify-center p-1">
-        <img
+        <Image
           src={data.sprites.front_default}
           alt={`${data.name}'s front view'`}
         />
