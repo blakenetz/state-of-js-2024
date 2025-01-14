@@ -2,10 +2,6 @@
 
 Exploring libs, etc from [State of JS 2024](https://2024.stateofjs.com/) survey.
 
-Featuring:
-
-Highlights from the [features section](https://2024.stateofjs.com/en-US/features)
-
 - [pnpm Monorepo](https://pnpm.io/)
 - [JavaScript Features](./packages/features/README.md)
 - [Astro](./packages/astro-app/README.md)
