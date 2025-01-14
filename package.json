@@ -2,10 +2,12 @@
   "name": "state-of-js-2024",
   "version": "1.0.0",
   "description": "Exploration of libs, etc from State of JS 2024 survey",
+  "private": true,
   "scripts": {
-    "dev": "pnpm run --parallel dev",
-    "start": "pnpm run --parallel start",
-    "build": "pnpm run --parallel build"
+    "dev": "pnpm run --parallel --if-present dev",
+    "start": "pnpm run --parallel --if-present start",
+    "build": "pnpm run --parallel --if-present build",
+    "lint": "pnpm run --parallel --if-present lint"
   },
   "keywords": [
     "State of JS 2024"
