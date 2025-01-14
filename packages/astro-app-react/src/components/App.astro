@@ -1,0 +1,32 @@
+---
+interface Pokemon {
+  name: string;
+  url: string;
+}
+
+import Card from "./Card.astro";
+import CardSkeleton from "./CardSkeleton.astro";
+
+const randomInt = Math.floor(Math.random() * 1000);
+const pokemon: Pokemon[] = await fetch(
+  `https://pokeapi.co/api/v2/pokemon?limit=8&offset=${randomInt}`
+)
+  .then((res) => res.json())
+  .then((res) => res.results);
+---
+
+<section class="mx-auto max-w-2xl p-4 lg:max-w-7xl lg:p-8">
+  <h2 class="mb-2">Pokemon</h2>
+
+  <div
+    class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+  >
+    {
+      pokemon.map((p) => (
+        <Card pokemonUrl={p.url} server:defer>
+          <CardSkeleton slot="fallback" />
+        </Card>
+      ))
+    }
+  </div>
+</section>
