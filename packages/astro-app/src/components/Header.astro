@@ -1,0 +1,12 @@
+---
+import logo from "../assets/astro.svg";
+import { Image } from "astro:assets";
+---
+
+<header class="bg-teal-300 p-2 w-full">
+  <span>
+    <span class="sr-only">Astro App</span>
+    <Image alt="Astro logo" src={logo} />
+  </span>
+  <h1>Static Header</h1>
+</header>
