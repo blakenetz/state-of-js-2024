@@ -64,6 +64,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      shared-ui:
+        specifier: workspace:*
+        version: link:../shared-ui
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -89,6 +92,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      shared-ui:
+        specifier: workspace:*
+        version: link:../shared-ui
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3

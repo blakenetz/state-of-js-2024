@@ -3,8 +3,8 @@ import React from "react";
 interface CardProps {
   image: React.ReactNode;
   name: string;
-  height: string;
-  weight: string;
+  height: number;
+  weight: number;
 }
 
 export default function Card({ image, name, height, weight }: CardProps) {

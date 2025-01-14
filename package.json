@@ -19,5 +19,8 @@
   },
   "dependencies": {
     "tsx": "^4.19.2"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
