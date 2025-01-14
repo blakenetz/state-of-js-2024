@@ -1,7 +1,7 @@
 import App from "@/components/app";
+import { Header } from "shared-ui";
 import logo from "@/public/vercel.svg";
 import Image from "next/image";
-import { Header } from "shared-ui";
 
 export default function Home() {
   return (

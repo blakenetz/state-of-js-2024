@@ -23,6 +23,8 @@ export default async function Card({ pokemonUrl }: Props) {
         <Image
           src={data.sprites.front_default}
           alt={`${data.name}'s front view'`}
+          width={96}
+          height={96}
         />
       }
       name={data.name}
