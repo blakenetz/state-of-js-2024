@@ -13,6 +13,7 @@ interface Data {
 }
 
 const { pokemonUrl } = Astro.props;
+import { Card as SharedUiCard } from "shared-ui";
 
 const data: Data = await fetch(pokemonUrl)
   .then((res) => res.json())
@@ -22,9 +23,7 @@ const data: Data = await fetch(pokemonUrl)
 <div
   class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 >
-  <div class="bg-white flex justify-center p-1">
-    <img src={data.sprites.front_default} alt={`${data.name}'s front view'`} />
-  </div>
+  <div class="bg-white flex justify-center p-1"></div>
 
   <div class="p-5">
     <h5

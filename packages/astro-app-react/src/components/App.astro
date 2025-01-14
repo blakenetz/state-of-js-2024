@@ -5,7 +5,7 @@ interface Pokemon {
 }
 
 import Card from "./Card.astro";
-import CardSkeleton from "./CardSkeleton.astro";
+import { CardSkeleton } from "shared-ui";
 
 const randomInt = Math.floor(Math.random() * 1000);
 const pokemon: Pokemon[] = await fetch(
