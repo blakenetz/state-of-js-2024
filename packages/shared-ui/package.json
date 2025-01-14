@@ -1,0 +1,14 @@
+{
+  "name": "shared-ui",
+  "scripts": {},
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "typescript": "^5"
+  }
+}
