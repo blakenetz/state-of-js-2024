@@ -14,7 +14,9 @@ interface Data {
 
 const { pokemonUrl } = Astro.props;
 
-const data = await fetch(pokemonUrl).then((res) => res.json());
+const data: Data = await fetch(pokemonUrl)
+  .then((res) => res.json())
+  .then((data) => new Promise((r) => setTimeout(() => r(data), 3000)));
 ---
 
 <div
